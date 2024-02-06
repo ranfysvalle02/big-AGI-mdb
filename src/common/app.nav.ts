@@ -28,6 +28,11 @@ import { DiscordIcon } from '~/common/components/icons/DiscordIcon';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 
+// Action icons
+import LogoutIcon from '@mui/icons-material/Logout';
+import Face5Icon from '@mui/icons-material/Face5';
+
+import { logout } from './providers/ProviderAtlasAppServices';
 
 import { Brand } from '~/common/app.config';
 import { hasNoChatLinkItems } from '~/modules/trade/link/store-link';
@@ -74,18 +79,19 @@ export interface NavItemExtLink extends ItemBase {
   href: string,
 }
 
-// interface MenuItemAction extends ItemBase {
-//   type: 'action',
-//   action: () => void,
-// }
+interface MenuItemAction extends ItemBase {
+   usericon: any;
+   type: 'action',
+   action: () => void,
+}
 
 
 export const navItems: {
   apps: NavItemApp[],
   modals: NavItemModal[],
   links: NavItemExtLink[],
+  actions: MenuItemAction[],
 } = {
-
   // User-chosen apps
   apps: [
     {
@@ -222,7 +228,18 @@ export const navItems: {
       href: Brand.URIs.OpenRepo,
     },
   ],
-
+  actions: [
+    {
+      type: 'action',
+      name: '',
+      usericon: Face5Icon,
+      icon: LogoutIcon,
+      action: () => {
+        // logout
+        logout();
+      }
+    }
+  ]
 };
 
 // apply UI filtering right away - do it here, once, and for all

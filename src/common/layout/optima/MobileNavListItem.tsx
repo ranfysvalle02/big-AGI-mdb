@@ -12,7 +12,7 @@ import { BringTheLove } from './components/BringTheLove';
  * This is used from the Menu of the Pagebar, to have nav items on Mobile, before we add
  * a dedicated Mobile Navigation bar.
  */
-export function MobileNavListItem(props: { variant?: VariantProp, currentApp?: NavItemApp, hideApps?: boolean, hideSocial?: boolean }) {
+export function MobileNavListItem(props: { variant?: VariantProp, currentApp?: NavItemApp, hideApps?: boolean, hideActions?:boolean, hideSocial?: boolean }) {
 
   return (
     <ListItem
@@ -77,6 +77,24 @@ export function MobileNavListItem(props: { variant?: VariantProp, currentApp?: N
         >
           {navItems.links.map(item =>
             <BringTheLove key={'love-' + item.name} text={item.name} icon={item.icon} link={item.href} />,
+          )}
+        </ButtonGroup>
+      )}
+
+      {/* Group 3: Actions */}
+      {!props.hideActions && (
+        <ButtonGroup
+          variant={props.variant}
+          size='sm'
+          sx={{
+            '--ButtonGroup-separatorSize': 0,
+            '--ButtonGroup-connected': 0,
+            ml: 'auto',
+            gap: 0.5,
+          }}
+        >
+          {navItems.actions.map(item =>
+            <Button key={'act-' + item.name} size='sm' variant='soft' onClick={() => item.action()}>{item.name}</Button>
           )}
         </ButtonGroup>
       )}

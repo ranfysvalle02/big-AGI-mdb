@@ -21,6 +21,9 @@ import { ProviderSnacks } from '~/common/providers/ProviderSnacks';
 import { ProviderTRPCQueryClient } from '~/common/providers/ProviderTRPCQueryClient';
 import { ProviderTheming } from '~/common/providers/ProviderTheming';
 
+//Atlas App Services
+import { ProviderAtlasAppServices } from '~/common/providers/ProviderAtlasAppServices';
+
 
 const MyApp = ({ Component, emotionCache, pageProps }: MyAppProps) =>
   <>
@@ -29,20 +32,22 @@ const MyApp = ({ Component, emotionCache, pageProps }: MyAppProps) =>
       <title>{Brand.Title.Common}</title>
       <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no' />
     </Head>
-
-    <ProviderTheming emotionCache={emotionCache}>
-      <ProviderSingleTab>
-        <ProviderBootstrapLogic>
-          <ProviderTRPCQueryClient>
-            <ProviderSnacks>
-              <ProviderBackendAndNoSSR>
-                <Component {...pageProps} />
-              </ProviderBackendAndNoSSR>
-            </ProviderSnacks>
-          </ProviderTRPCQueryClient>
-        </ProviderBootstrapLogic>
-      </ProviderSingleTab>
-    </ProviderTheming>
+      <ProviderTheming emotionCache={emotionCache}>
+      
+          <ProviderSingleTab>
+            <ProviderBootstrapLogic>
+              <ProviderTRPCQueryClient>
+                <ProviderSnacks>
+                  <ProviderBackendAndNoSSR>
+                    <ProviderAtlasAppServices>
+                      <Component {...pageProps} />
+                    </ProviderAtlasAppServices>
+                  </ProviderBackendAndNoSSR>
+                </ProviderSnacks>
+              </ProviderTRPCQueryClient>
+            </ProviderBootstrapLogic>
+          </ProviderSingleTab>
+      </ProviderTheming>
 
     <VercelAnalytics debug={false} />
     <VercelSpeedInsights debug={false} sampleRate={1 / 10} />

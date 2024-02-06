@@ -2,7 +2,7 @@ import * as React from 'react';
 import Router from 'next/router';
 
 import type { SxProps } from '@mui/joy/styles/types';
-import { Divider, Tooltip } from '@mui/joy';
+import { Divider, Tooltip, Button } from '@mui/joy';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { useModelsStore } from '~/modules/llms/store-llms';
@@ -90,6 +90,14 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
     );
   }, []);
 
+  // Action link items
+  const navActionItems = React.useMemo(() => {
+    return navItems.actions.map((item, index) =>
+      <Button key={'act-' + item.name} size='sm' variant='soft' onClick={() => item.action()}><item.usericon />{item.name}<item.icon /></Button>,
+    );
+  }, []);
+
+
 
   // Modal items
   const navModalItems = React.useMemo(() => {
@@ -144,6 +152,7 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
       <DesktopNavGroupBox sx={{ mb: 'calc(2 * var(--GroupMarginY))' }}>
         {navExtLinkItems}
         {navModalItems}
+        {navActionItems}
       </DesktopNavGroupBox>
 
     </InvertedBar>
