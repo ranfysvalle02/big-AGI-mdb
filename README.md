@@ -1,3 +1,16 @@
+# BIG-AGI meets MongoDB Atlas
+
+This is a fork of big-AGI that tries to stay as compatible as possible with the main branch of big-AGI while adding MongoDB Atlas developer data platform capabilities. 
+
+
+## Changes from fork
+
+- MongoDB Atlas ONLY (no postgres here)
+- Atlas App Services Authentication (email/password)
+- Action buttons available for 'logout' (and more)
+- Atlas App Services provider that can be leveraged throughout the application
+
+
 # BIG-AGI 🧠✨
 
 Welcome to big-AGI 👋, the GPT application for professionals that need function, form,
